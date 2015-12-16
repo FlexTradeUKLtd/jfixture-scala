@@ -1,0 +1,14 @@
+target
+.metadata
+.settings
+.classpath
+dist
+.project
+**/*/src/main/resources/git.properties
+**/*/*/src/main/resources/git.properties
+bin/
+*.iml
+*.idea
+.arcconfig
+hs_err_pid*.log
+.arc
