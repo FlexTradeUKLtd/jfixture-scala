@@ -67,7 +67,10 @@ class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
     "create collections of custom types" in {
       defaultFixture.create[List[MyType]](new SpecimenType[List[MyType]]() {}) foreach { _ mustBe a [MyType] }
       defaultFixture.create[Set[MyType]](new SpecimenType[Set[MyType]]() {}) foreach { _ mustBe a [MyType] }
-      defaultFixture.create[Map[MyType, MyType]](new SpecimenType[Map[MyType, MyType]]() {}) foreach { _ mustBe a [(MyType, MyType)] }
+      defaultFixture.create[Map[MyType, MyType]](new SpecimenType[Map[MyType, MyType]]() {}) foreach { t => {
+        t._1 mustBe a [MyType]
+        t._2 mustBe a [MyType]
+      } }
     }
 
     "create collections of collections" in {
