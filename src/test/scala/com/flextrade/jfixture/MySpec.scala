@@ -1,9 +1,9 @@
 package com.flextrade.jfixture
 
-import java.lang.reflect.{Type, ParameterizedType}
-
 import com.flextrade.jfixture.utility.SpecimenType
 import org.scalatest.{MustMatchers, WordSpec}
+
+import scala.reflect.runtime.universe.typeOf
 
 class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
   "The JFixtureSugar" should {
@@ -21,6 +21,39 @@ class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
 
       val set = fixture[Set[String]]
       set foreach { _ mustBe a [String]}
+
+      val map = fixture[Map[String, MyType]]
+      map foreach { entry =>
+        entry._1 mustBe a [String]
+        entry._2 mustBe a [MyType]
+      }
+    }
+
+    "create collections recursively" in {
+      val listOfSets = fixture[List[Set[Int]]]
+      listOfSets.size mustBe 3
+      listOfSets foreach { item =>
+        item.size mustBe 3
+        item foreach { _ mustBe an [Integer] }
+      }
+
+      val setOfMaps = fixture[Set[Map[Int,String]]]
+      setOfMaps.size mustBe 3
+      setOfMaps foreach { item =>
+        item.size mustBe 3
+        item foreach { entry =>
+          entry._1 mustBe an [Integer]
+          entry._2 mustBe a [String]
+        }
+      }
+
+      val mapOfLists = fixture[Map[String,List[MyType]]]
+      mapOfLists.size mustBe 3
+      mapOfLists foreach { entry =>
+        entry._1 mustBe a [String]
+        entry._2.size mustBe 3
+        entry._2 foreach { _ mustBe a [MyType] }
+      }
     }
 
     "create random integers" in {
@@ -62,6 +95,7 @@ class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
       val list = defaultFixture.create[List[Int]](new SpecimenType[List[Int]]{})
 
       List(map, set, list) foreach { _.size mustEqual count }
+      defaultFixture.customise().repeatCount(3)
     }
 
     "create collections of custom types" in {
@@ -74,12 +108,26 @@ class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
     }
 
     "create collections of collections" in {
-      val listOfSets = defaultFixture.create[List[Set[Int]]](SpecimenType.of(new SimpleCollectionType(classOf[List[_]], new SimpleCollectionType(classOf[Set[_]], classOf[Int])))
-)
+      val listOfSets = defaultFixture.create(typeOf[List[Set[Int]]]).asInstanceOf[List[Set[Int]]]
+
       listOfSets foreach { item =>
         item mustBe a [Set[_]]
+        item.size mustBe 3
         item foreach { _ mustBe an [Integer]}
       }
+    }
+
+    "create Double values" in {
+      fixture[Double] mustBe a [java.lang.Double]
+      defaultFixture.create(typeOf[Double]) mustBe a [java.lang.Double]
+    }
+
+    "create Byte values" in {
+      fixture[Byte] mustBe a [java.lang.Byte]
+    }
+
+    "create Long values" in {
+      fixture[Long] mustBe a [java.lang.Long]
     }
   }
 }
