@@ -9,26 +9,26 @@ import scala.collection.JavaConversions._
 import scala.reflect.runtime.universe.{Type => ScalaType, _}
 
 class ClassTagCollectionRelay extends SpecimenBuilder {
-  val noSpecimen = new NoSpecimen
+  private val NoSpecimen = new NoSpecimen
 
-  val listSymbol = typeOf[List[_]].typeSymbol
-  val setSymbol = typeOf[Set[_]].typeSymbol
-  val mapSymbol = typeOf[Map[_,_]].typeSymbol
+  private val ListSymbol = typeOf[List[_]].typeSymbol
+  private val SetSymbol = typeOf[Set[_]].typeSymbol
+  private val MapSymbol = typeOf[Map[_,_]].typeSymbol
 
   override def create(request: scala.Any, context: SpecimenContext): AnyRef = request match {
     case tpeTag: ScalaType =>
       val args = tpeTag.typeArgs
-      if (args.size < 1) return noSpecimen
+      if (args.size < 1) return NoSpecimen
       val collection = context.resolve(new MultipleRequest(args.head)).asInstanceOf[util.Collection[_]]
 
       tpeTag.typeSymbol match {
-        case c @ `listSymbol` => collection.toList
-        case c @ `setSymbol` => collection.toSet
-        case c @ `mapSymbol` => collection.map{_ -> context.resolve(args.tail.head)}.toMap
-        case _ => noSpecimen
+        case ListSymbol => collection.toList
+        case SetSymbol => collection.toSet
+        case MapSymbol => collection.map{_ -> context.resolve(args.tail.head)}.toMap
+        case _ => NoSpecimen
       }
 
-    case _ => noSpecimen
+    case _ => NoSpecimen
   }
 
 }
