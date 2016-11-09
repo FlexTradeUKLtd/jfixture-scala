@@ -3,6 +3,11 @@ JFixture Scala contains a customisation to JFixture that adds support for many o
 
 [![Build Status](https://travis-ci.org/FlexTradeUKLtd/jfixture-scala.svg?branch=master)](https://travis-ci.org/FlexTradeUKLtd/jfixture-scala)
 
+# SBT
+```xml
+libraryDependencies += "com.flextrade.jfixture" % "jfixture-scala" % "0.0.1"
+```
+
 # Maven
 ```xml
 <dependency>
