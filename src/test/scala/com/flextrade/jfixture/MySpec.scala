@@ -117,18 +117,38 @@ class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
       }
     }
 
-    "create Double values" in {
-      fixture[Double] mustBe a [java.lang.Double]
-      defaultFixture.create(typeOf[Double]) mustBe a [java.lang.Double]
-    }
-
     "create Byte values" in {
       fixture[Byte] mustBe a [java.lang.Byte]
     }
-
+    
+    "create Short values" in {
+      fixture[Short] mustBe a [java.lang.Short]
+    }
+    
+    "create Int values" in {
+      fixture[Int] mustBe a [java.lang.Integer]
+    }
+    
     "create Long values" in {
       fixture[Long] mustBe a [java.lang.Long]
     }
+    
+    "create Float values" in {
+      fixture[Float] mustBe a [java.lang.Float]
+    }
+    
+    "create Double values" in {
+      fixture[Double] mustBe a [java.lang.Double]
+    }
+    
+    "create Boolean values" in {
+      fixture[Boolean] mustBe a [java.lang.Boolean]
+    }
+    
+    "create Char values" in {
+      fixture[Char] mustBe a [java.lang.Character]
+    }
+
   }
 }
 
