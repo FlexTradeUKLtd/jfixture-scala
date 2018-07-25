@@ -5,7 +5,7 @@ import org.scalatest.{MustMatchers, WordSpec}
 
 import scala.reflect.runtime.universe.typeOf
 
-class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
+class JFixtureSugarSpec extends WordSpec with MustMatchers with JFixtureSugar {
   "The JFixtureSugar" should {
 
     "be very ergonomic to use" in {
@@ -149,7 +149,23 @@ class MySpec extends WordSpec with MustMatchers with JFixtureSugar {
       fixture[Char] mustBe a [java.lang.Character]
     }
 
+    "provide implicit method to add `lazyInstance` customisations" in new JFixtureSugar {
+      defaultFixture.customise().scalaLazyInstance[String]("abc")
+
+      fixture[String] mustBe "abc"
+    }
+
+    "provide implicit method to add `intercept` customisations" in new JFixtureSugar {
+      defaultFixture.customise().scalaIntercept[MutableTestClass](instance => {
+        instance.value = "abc"
+        instance
+      })
+
+      fixture[MutableTestClass].value mustBe "abc"
+    }
   }
 }
 
 class MyType {}
+
+case class MutableTestClass(var value: String)
