@@ -1,6 +1,6 @@
 if [[ ${TRAVIS_PULL_REQUEST} = 'false' ]];
 then 
-	mvn deploy --settings ./settings.xml;
+	sbt clean compile test publish
 else 
-	mvn clean verify;
+	sbt clean compile test
 fi
