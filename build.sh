@@ -1,6 +1,6 @@
 if [[ ${TRAVIS_PULL_REQUEST} = 'false' ]];
 then 
-	sbt clean compile test publish
+	sbt clean +compile +test +publish
 else 
-	sbt clean compile test
+	sbt clean +compile +test
 fi
