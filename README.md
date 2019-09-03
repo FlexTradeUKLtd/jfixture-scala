@@ -9,7 +9,7 @@ Case classes already work with the base version of JFixture.
 
 # SBT
 ```sbt
-libraryDependencies += "com.flextrade.jfixture" %% "jfixture-scala" % "1.0.1"
+libraryDependencies += "com.flextrade.jfixture" %% "jfixture-scala" % "1.1.0"
 ```
 
 # Maven
@@ -17,7 +17,7 @@ libraryDependencies += "com.flextrade.jfixture" %% "jfixture-scala" % "1.0.1"
 <dependency>
 	<groupId>com.flextrade.jfixture</groupId>
 	<artifactId>jfixture-scala_2.11</artifactId>
-	<version>1.0.1</version>
+	<version>1.1.0</version>
 </dependency>
 ```
 
