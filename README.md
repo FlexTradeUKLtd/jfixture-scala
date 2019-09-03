@@ -8,16 +8,16 @@ Currently, Scala Lists, Sets, Maps and primitives (Int, Byte etc) are supported.
 Case classes already work with the base version of JFixture.
 
 # SBT
-```xml
-libraryDependencies += "com.flextrade.jfixture" % "jfixture-scala" % "0.0.3"
+```sbt
+libraryDependencies += "com.flextrade.jfixture" %% "jfixture-scala" % "1.0.1"
 ```
 
 # Maven
 ```xml
 <dependency>
 	<groupId>com.flextrade.jfixture</groupId>
-	<artifactId>jfixture-scala</artifactId>
-	<version>0.0.3</version>
+	<artifactId>jfixture-scala_2.11</artifactId>
+	<version>1.0.1</version>
 </dependency>
 ```
 
