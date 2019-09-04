@@ -4,7 +4,7 @@ lazy val supportedScalaVersions = List(scala212, scala211)
 
 ThisBuild / organization := "com.flextrade.jfixture"
 ThisBuild / name         := "jfixture-scala"
-ThisBuild / version      := "1.1.0-SNAPSHOT"
+ThisBuild / version      := "1.2.0-SNAPSHOT"
 
 ThisBuild / organizationName := "FlexTrade"
 ThisBuild / organizationHomepage := Some(url("http://www.flextrade.com/"))
