@@ -50,3 +50,9 @@ ThisBuild / publishMavenStyle := true
     println("CI_DEPLOY_USERNAME and/or CI_DEPLOY_PASSWORD is missing")
     credentials ++= Seq()
 }
+
+useGpg := false
+usePgpKeyHex("A70E577DFB2551FE")
+pgpPublicRing := baseDirectory.value / "project" / ".gnupg" / "pubring.gpg"
+pgpSecretRing := baseDirectory.value / "project" / ".gnupg" / "secring.gpg"
+pgpPassphrase := sys.env.get("GPG_PASSPHRASE").map(_.toArray)
