@@ -1,11 +1,9 @@
 package com.flextrade.jfixture.internal
 
-import java.util
-
 import com.flextrade.jfixture.requests.MultipleRequest
 import com.flextrade.jfixture.{NoSpecimen, SpecimenBuilder, SpecimenContext}
 
-import scala.collection.JavaConversions._
+import java.util
 import scala.reflect.runtime.universe.{Type => ScalaType, _}
 
 class ClassTagCollectionRelay extends SpecimenBuilder {
@@ -19,7 +17,7 @@ class ClassTagCollectionRelay extends SpecimenBuilder {
     case tpeTag: ScalaType =>
       val args = tpeTag.typeArgs
       if (args.size < 1) return NoSpecimen
-      val collection = context.resolve(new MultipleRequest(args.head)).asInstanceOf[util.Collection[_]]
+      val collection = context.resolve(new MultipleRequest(args.head)).asInstanceOf[util.Collection[_]].toArray
 
       tpeTag.typeSymbol match {
         case ListSymbol => collection.toList
