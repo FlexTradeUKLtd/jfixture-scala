@@ -53,7 +53,7 @@ ThisBuild / publishMavenStyle := true
 }
 
 useGpg := false
-usePgpKeyHex("A70E577DFB2551FE")
+usePgpKeyHex("5B79DE612A3A60F8")
 pgpPublicRing := baseDirectory.value / "project" / ".gnupg" / "pubring.gpg"
 pgpSecretRing := baseDirectory.value / "project" / ".gnupg" / "secring.gpg"
 pgpPassphrase := sys.env.get("GPG_PASSPHRASE").map(_.toArray)
