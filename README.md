@@ -1,23 +1,25 @@
 # JFixture Scala
 JFixture Scala contains a customisation to [JFixture](https://github.com/FlexTradeUKLtd/jfixture) that adds support for many of Scala's built in types
 
-[![Build Status](https://travis-ci.org/FlexTradeUKLtd/jfixture-scala.svg?branch=master)](https://travis-ci.org/FlexTradeUKLtd/jfixture-scala)
+[![Build Status](https://github.com/FlexTradeUKLtd/jfixture-scala/actions/workflows/scalaTest.yml/badge.svg)](https://github.com/FlexTradeUKLtd/jfixture-scala/actions/workflows/scalaTest.yml)
 
 Currently, Scala Lists, Sets, Maps and primitives (Int, Byte etc) are supported.
 
 Case classes already work with the base version of JFixture.
 
+Available for Scala 2.11, 2.12 and 2.13
+
 # SBT
 ```sbt
-libraryDependencies += "com.flextrade.jfixture" %% "jfixture-scala" % "1.1.0"
+libraryDependencies += "com.flextrade.jfixture" %% "jfixture-scala" % "1.2.0"
 ```
 
 # Maven
 ```xml
 <dependency>
 	<groupId>com.flextrade.jfixture</groupId>
-	<artifactId>jfixture-scala_2.11</artifactId>
-	<version>1.1.0</version>
+	<artifactId>jfixture-scala_2.13</artifactId>
+	<version>1.2.0</version>
 </dependency>
 ```
 
