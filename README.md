@@ -7,7 +7,10 @@ Currently, Scala Lists, Sets, Maps and primitives (Int, Byte etc) are supported.
 
 Case classes already work with the base version of JFixture.
 
-Available for Scala 2.11, 2.12 and 2.13
+Available on Maven Central for:
+* Scala 2.11: [![maven central](https://maven-badges.herokuapp.com/maven-central/com.flextrade.jfixture/jfixture-scala_2.11/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.flextrade.jfixture/jfixture-scala_2.11)
+* Scala 2.12: [![maven central](https://maven-badges.herokuapp.com/maven-central/com.flextrade.jfixture/jfixture-scala_2.12/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.flextrade.jfixture/jfixture-scala_2.12)
+* Scala 2.13: [![maven central](https://maven-badges.herokuapp.com/maven-central/com.flextrade.jfixture/jfixture-scala_2.13/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.flextrade.jfixture/jfixture-scala_2.13)
 
 # SBT
 ```sbt
