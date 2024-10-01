@@ -1,31 +1,25 @@
 package com.flextrade.jfixture
 
-import java.lang.reflect.Type
-
 import com.flextrade.jfixture.internal.ScalaRelays
 import com.flextrade.jfixture.utility.Interceptor
 
+import java.lang.reflect.Type
 import scala.reflect.{ClassTag, classTag}
-import scala.reflect.runtime.universe._
 
-trait JFixtureSugar {
+trait JFixtureSugar extends JFixtureSugarPlatformSpecific {
   val defaultFixture: JFixture = new JFixture()
     .addBuilderToStartOfPipeline(ScalaRelays.collections)
     .addBuilderToStartOfPipeline(ScalaRelays.primitives)
     .addBuilderToStartOfPipeline(ScalaRelays.reflection)
 
-  def fixture[T : ClassTag:TypeTag]: T = {
-    defaultFixture.create(typeOf[T]).asInstanceOf[T]
-  }
-
   /**
-    * The following methods can be accessed when customising the fixture - e.g.,
-    * <pre>
-    *   <code>
-    *     defaultFixture.customise().scalaLazyInstance[SomeCaseClass](SomeCaseClass(1,2,3))
-    *   </code>
-    * </pre>
-    */
+   * The following methods can be accessed when customising the fixture - e.g.,
+   * <pre>
+   * <code>
+   * defaultFixture.customise().scalaLazyInstance[SomeCaseClass](SomeCaseClass(1,2,3))
+   * </code>
+   * </pre>
+   */
   implicit class FluentCustomisationScalaConversion(customisation: FluentCustomisation) {
 
     def scalaIntercept[T: ClassTag](interceptor: T => T): FluentCustomisation = {

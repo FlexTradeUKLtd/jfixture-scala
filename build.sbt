@@ -1,7 +1,8 @@
-lazy val scala213 = "2.13.8"
-lazy val scala212 = "2.12.9"
-lazy val scala211 = "2.11.7"
-lazy val supportedScalaVersions = List(scala213, scala212, scala211)
+lazy val scala3 = "3.3.4"
+lazy val scala213 = "2.13.15"
+lazy val scala212 = "2.12.20"
+lazy val scala211 = "2.11.12"
+lazy val supportedScalaVersions = List(scala3, scala213, scala212, scala211)
 
 ThisBuild / organization := "com.flextrade.jfixture"
 ThisBuild / name         := "jfixture-scala"
@@ -27,14 +28,17 @@ ThisBuild / scmInfo := Some(
   )
 )
 
-ThisBuild / scalaVersion := scala211
+ThisBuild / scalaVersion := scala3
 ThisBuild / crossScalaVersions := supportedScalaVersions
 
 ThisBuild / libraryDependencies ++= Seq(
-  "org.scala-lang" % "scala-compiler" % scalaVersion.value,
   "com.flextrade.jfixture" % "jfixture" % "2.7.2" % "provided",
-  "org.scalatest" %% "scalatest" % "3.0.8" % "test"
-)
+  "org.scalatest" %% "scalatest" % "3.2.19" % "test",
+) ++ (CrossVersion.partialVersion(scalaVersion.value) match {
+  case Some((2, _)) => List("org.scala-lang" % "scala-compiler" % scalaVersion.value)
+  case Some((3, _)) => List("io.github.gaeljw" %% "typetrees" % "0.5.0")
+  case _ => Nil
+})
 
 ThisBuild / pomIncludeRepository := { _ => false }
 ThisBuild / publishTo := {

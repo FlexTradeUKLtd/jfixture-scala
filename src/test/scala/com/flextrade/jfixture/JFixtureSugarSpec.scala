@@ -1,11 +1,10 @@
 package com.flextrade.jfixture
 
 import com.flextrade.jfixture.utility.SpecimenType
-import org.scalatest.{MustMatchers, WordSpec}
+import org.scalatest.matchers.must.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-import scala.reflect.runtime.universe.typeOf
-
-class JFixtureSugarSpec extends WordSpec with MustMatchers with JFixtureSugar {
+class JFixtureSugarSpec extends AnyWordSpec with Matchers with JFixtureSugar {
   "The JFixtureSugar" should {
 
     "be very ergonomic to use" in {
