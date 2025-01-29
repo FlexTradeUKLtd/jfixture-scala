@@ -19,5 +19,7 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
+    - name: Setup sbt launcher
+      uses: sbt/setup-sbt@v1
     - name: Run tests
       run: sbt clean +compile +test
