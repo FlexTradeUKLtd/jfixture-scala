@@ -12,3 +12,4 @@ bin/
 .arcconfig
 hs_err_pid*.log
 .arc
+.bsp/*
