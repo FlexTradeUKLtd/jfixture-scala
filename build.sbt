@@ -50,7 +50,7 @@ ThisBuild / publishMavenStyle := true
 
 (sys.env.get("CI_DEPLOY_USERNAME"), sys.env.get("CI_DEPLOY_PASSWORD")) match {
   case (Some(username), Some(password)) =>
-    credentials += Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)
+    credentials += Credentials("Sonatype Nexus Repository Manager", "s01.oss.sonatype.org", username, password)
   case _ =>
     println("CI_DEPLOY_USERNAME and/or CI_DEPLOY_PASSWORD is missing")
     credentials ++= Seq()
